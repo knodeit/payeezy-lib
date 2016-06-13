@@ -1,3 +1,9 @@
+
+/**
+ * (c) Copyright LPG Labs
+ * The content of this file is protected by copyright laws and NOT free to distribute in any form
+ */
+
 (function () {
     'use strict';
 

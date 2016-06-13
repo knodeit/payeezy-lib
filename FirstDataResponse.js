@@ -1,7 +1,13 @@
+/**
+ * (c) Copyright LPG Labs
+ * The content of this file is protected by copyright laws and NOT free to distribute in any form
+ */
+
 (function () {
     'use strict';
 
     function FirstDataResponse(httpResponse) {
+
         this.statusCode = httpResponse.statusCode,
             this.headers = httpResponse.headers,
             this.payload = httpResponse.payload
@@ -35,6 +41,7 @@
     };
 
     FirstDataResponse.prototype.getTransaction = function () {
+
         return {
             authorizationNumber: this.payload.authorization_num,
             transactionTag: this.payload.transaction_tag,
