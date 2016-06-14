@@ -89,7 +89,7 @@ Payeezy.prototype.sendRequest = function (message) {
 };
 
 /**
- *
+ * Make a purchase on a credit card
  * @param cardHolderName    full name as mentioned on the credit card
  * @param cardNumber        full card number no spaces
  * @param expirtationYear   two digit format  so YY
@@ -114,7 +114,15 @@ Payeezy.prototype.makePurchase = function (cardHolderName, cardNumber, expirtati
 	return this.sendRequest(message);
 }
 
-
+/**
+ * PreAuthrize a card for 0 amount to receive a token to be used by makePurchaseByToken
+ * @param cardHolderName    full name as mentioned on the credit card
+ * @param cardNumber        full card number no spaces
+ * @param expirtationYear   two digit format  so YY
+ * @param expirationMonth   two digit format so MM
+ * @param cvv               three digit
+ * @param amount            number format like 12.99
+ */
 Payeezy.prototype.preAuthorize = function (cardHolderName, cardNumber, expirtationYear, expirationMonth, cvv) {
 	var message = JSON.stringify({
 		gateway_id: this.gatewayId,
@@ -131,7 +139,16 @@ Payeezy.prototype.preAuthorize = function (cardHolderName, cardNumber, expirtati
 	});
 	return this.sendRequest(message);
 }
-
+/**
+ *
+ * @param cardHolderName
+ * @param token            the transarmor token that is received from the preAuthorize step
+ * @param expirtationYear
+ * @param expirationMonth
+ * @param cvv
+ * @param cardType		first letter uppercase like Visa, Amex
+ * @param amount
+ */
 Payeezy.prototype.makePurchaseByToken = function (cardHolderName, token, expirtationYear, expirationMonth, cvv,cardType, amount) {
 	var message = JSON.stringify({
 		gateway_id: this.gatewayId,
