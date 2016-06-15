@@ -1,12 +1,13 @@
 /**
  * (c) Copyright LPG Labs
- * The content of this file is protected by copyright laws and NOT free to distribute in any form
+ * You can use this library without any restrictions unless you keep the above copyright mention in place
  */
 var expect = require('chai').expect;
 
 var PayeezyLib = require('../index');
-//gatewayId,password,hmacKey,hmacKeyId, transarmorCode,testMode
-var payeezy = new PayeezyLib('IC0697-99', 'IS43PjMcfB340Twp9C1mYArvMR2AoV9p', '2wldrMDBqC2H9N_xUfQ3QUzxNOpeZv4f', '349613', '3108', true);
+
+var payeezy = new PayeezyLib('xxxx', 'xxxx', 'xxxx', 'xxxx', 'xxx', true);
+
 describe('valid scenarios', function () {
 
 	describe('When a purchase is approved', function () {
@@ -15,7 +16,6 @@ describe('valid scenarios', function () {
 		beforeEach(function (done) {
 			payeezy.makePurchase('Peter', '4111111111111111', '20', '12', '123', 1.99)
 				.then(function (payment) {
-					console.log('payment', payment);
 					//do something with the payment reciept
 					valid = true;
 					done();
@@ -38,7 +38,6 @@ describe('valid scenarios', function () {
 		beforeEach(function (done) {
 			payeezy.preAuthorize('Peter', '4111111111111111', '20', '12', '123')
 				.then(function (payment) {
-					console.log('payment', payment);
 					//do something with the payment reciept
 					valid = true;
 					done();

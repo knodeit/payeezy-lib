@@ -1,8 +1,7 @@
 /**
  * (c) Copyright LPG Labs
- * The content of this file is protected by copyright laws and NOT free to distribute in any form
+ * You can use this library without any restrictions unless you keep the above copyright mention in place
  */
-
 
 'use strict';
 
