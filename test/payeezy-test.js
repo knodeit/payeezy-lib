@@ -32,6 +32,27 @@ describe('valid scenarios', function () {
 		});
 	});
 
+	describe('When a purchase with CVVis approved', function () {
+		var valid;
+		this.timeout(10000);
+		beforeEach(function (done) {
+			payeezy.makePurchaseWithoutCVV('Peter', '4111111111111111', '20', '12',  1.99)
+				.then(function (payment) {
+					//do something with the payment reciept
+					valid = true;
+					done();
+				})
+				.fail(function (err) {
+					//do something with the payment failure
+					console.log(err);
+					valid = false;
+					done();
+				});
+		})
+		it('Then it should pass', function () {
+			expect(valid).to.be.true;
+		});
+	});
 	describe('When a pre-authorization is approved by tansarmorToken', function () {
 		var valid;
 		this.timeout(10000);

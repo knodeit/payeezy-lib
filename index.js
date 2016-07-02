@@ -114,6 +114,23 @@ Payeezy.prototype.makePurchase = function (cardHolderName, cardNumber, expirtati
 	return this.sendRequest(message);
 }
 
+Payeezy.prototype.makePurchaseWithoutCVV = function (cardHolderName, cardNumber, expirtationYear, expirationMonth,   amount) {
+	var message = JSON.stringify({
+		gateway_id: this.gatewayId,
+		password: this.password,
+		transaction_type: PURCHASE_TRANSACTION_TYPE,
+		amount: amount,
+		cc_number: cardNumber,
+		cc_expiry: expirationMonth + expirtationYear,
+		cardholder_name: cardHolderName,
+
+		cvd_presence_ind: '0',
+		ta_token: this.transarmorToken
+
+	});
+	return this.sendRequest(message);
+}
+
 /**
  * PreAuthrize a card for 0 amount to receive a token to be used by makePurchaseByToken
  * @param cardHolderName    full name as mentioned on the credit card
