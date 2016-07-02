@@ -63,8 +63,10 @@ Payeezy.prototype.sendRequest = function (message) {
 			}
 			var firstDataResponse = new FirstDataResponse(res);
 			if (firstDataResponse.ok()) {
+
 				deferred.resolve(firstDataResponse.getTransaction());
 			} else {
+
 				deferred.reject(firstDataResponse.getError());
 			}
 		});

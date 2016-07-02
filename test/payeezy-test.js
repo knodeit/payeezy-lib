@@ -7,22 +7,22 @@ var expect = require('chai').expect;
 var PayeezyLib = require('../index');
 
 var payeezy = new PayeezyLib('xxxx', 'xxxx', 'xxxx', 'xxxx', 'xxx', true);
-
 describe('valid scenarios', function () {
 
 	describe('When a purchase is approved', function () {
 		var valid;
 		this.timeout(10000);
 		beforeEach(function (done) {
-			payeezy.makePurchase('Peter', '4111111111111111', '20', '12', '123', 1.99)
+			payeezy.makePurchase('Peter', '4111111111111111', '20', '12', '123', 1)
 				.then(function (payment) {
 					//do something with the payment reciept
+
 					valid = true;
 					done();
 				})
 				.fail(function (err) {
 					//do something with the payment failure
-					console.log(err);
+
 					valid = false;
 					done();
 				});
@@ -31,7 +31,7 @@ describe('valid scenarios', function () {
 			expect(valid).to.be.true;
 		});
 	});
-
+/*
 	describe('When a purchase with CVVis approved', function () {
 		var valid;
 		this.timeout(10000);
@@ -39,12 +39,13 @@ describe('valid scenarios', function () {
 			payeezy.makePurchaseWithoutCVV('Peter', '4111111111111111', '20', '12',  1.99)
 				.then(function (payment) {
 					//do something with the payment reciept
+
 					valid = true;
 					done();
 				})
 				.fail(function (err) {
 					//do something with the payment failure
-					console.log(err);
+
 					valid = false;
 					done();
 				});
@@ -96,4 +97,5 @@ describe('valid scenarios', function () {
 			expect(valid).to.be.true;
 		});
 	});
+	*/
 });

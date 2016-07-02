@@ -30,14 +30,24 @@ FirstDataResponse.prototype.getError = function () {
         return {};
 
     var payload = this.payload;
-    var isBankFailure = payload.bank_message !== 'Approved';
-    var code = isBankFailure ? payload.bank_resp_code : payload.exact_resp_code;
-    var defaultMessage = isBankFailure ? payload.bank_message : payload.exact_message;
+    if (payload){
+        var isBankFailure = payload.bank_message !== 'Approved';
+        var code = isBankFailure ? payload.bank_resp_code : payload.exact_resp_code;
+        var defaultMessage = isBankFailure ? payload.bank_message : payload.exact_message;
 
-    return {
-        reason: ResponseCodes[code] || defaultMessage,
-        code: code
-    };
+        return {
+            reason: ResponseCodes[code] || defaultMessage,
+            code: code
+        };
+    }
+    else{
+        //invalid API call, invalid credentials etc
+        return {
+            reason: 'invalid request',
+            code: 999
+        };
+    }
+
 };
 
 FirstDataResponse.prototype.getTransaction = function () {
